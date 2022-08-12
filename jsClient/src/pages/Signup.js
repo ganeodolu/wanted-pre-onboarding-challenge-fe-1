@@ -38,7 +38,7 @@ const Signup = () => {
 		return true;
 	};
 	const isValid =
-		state.password < 4 || state.password !== state.passwordConfirm;
+		state.password.length < 4 || state.password !== state.passwordConfirm;
 
 	const onClickButton = (e) => {
 		e.preventDefault();
