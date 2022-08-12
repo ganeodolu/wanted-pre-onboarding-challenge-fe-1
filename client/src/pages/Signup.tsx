@@ -11,7 +11,6 @@ const Signup = (props: Props) => {
   const navigate = useNavigate();
   const [state, setState] = useState({
     id: "",
-    userName: "",
     password: "",
     passwordConfirm: "",
   });
