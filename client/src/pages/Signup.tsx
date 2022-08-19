@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { validation } from "../utils/validation";
 import { Input, Button } from "../elements";
+import { MESSAGES } from "../utils/constants";
+import * as auth from "../lib/api/auth";
 
 interface Props {
   
@@ -44,11 +46,14 @@ const Signup = (props: Props) => {
   const isValid =
     state.password.length < 8 || state.password !== state.passwordConfirm;
 
-  const onClickButton = (e: any) => {
+  const onClickButton = async (e: any) => {
     e.preventDefault();
     if (isValidInputs()) {
-      // dispatch(userActions.signUpFB(state.id, state.password, state.userName));
-      navigate("/");
+      const { id, password } = state;
+      const { message } = await auth.signup({email: id, password: password});
+      if(MESSAGES.SIGNUP === message) {
+        navigate("/");
+      }
     }
   };
   

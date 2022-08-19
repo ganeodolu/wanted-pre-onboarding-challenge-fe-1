@@ -61,7 +61,6 @@ const Login = (props: Props) => {
 
   useEffect(() => {
     const userToken = localStorage.getItem('user');
-    console.log(userToken);
     if(userToken){
       navigate("/");
     }
