@@ -31,11 +31,15 @@ const signup = async ({
 			email,
 			password,
 		});
+    console.log(response.data)
     const { token } = response.data;
     localStorage.setItem('user', token);
 		return response.data;
-	} catch (error) {
+	} catch (error: any) {
 		console.log(error);
+    if(error.response.data.details){
+      alert(error.response.data.details)
+    }
 	}
 };
 

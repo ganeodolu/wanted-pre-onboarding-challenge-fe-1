@@ -41,8 +41,8 @@ const Login = (props: Props) => {
     e.preventDefault();
     if (isValidInputs()) {
       const { id, password } = state;
-      const { message } = await auth.login({email: id, password: password});
-      if(MESSAGES.LOGIN === message) {
+      const response = await auth.login({email: id, password: password});
+      if(MESSAGES.LOGIN === response?.message) {
         navigate("/");
       }
     }
@@ -52,8 +52,8 @@ const Login = (props: Props) => {
     e.preventDefault();
     if (isValidInputs()) {
       const { id, password } = state;
-      const { message } = await auth.login({email: id, password: password});
-      if(MESSAGES.LOGIN === message) {
+      const response = await auth.login({email: id, password: password});
+      if(MESSAGES.LOGIN === response?.message) {
         navigate("/");
       }
     }

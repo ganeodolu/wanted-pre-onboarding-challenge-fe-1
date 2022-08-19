@@ -50,8 +50,9 @@ const Signup = (props: Props) => {
     e.preventDefault();
     if (isValidInputs()) {
       const { id, password } = state;
-      const { message } = await auth.signup({email: id, password: password});
-      if(MESSAGES.SIGNUP === message) {
+      const response = await auth.signup({email: id, password: password});
+      console.log(response);
+      if(MESSAGES.SIGNUP === response?.message) {
         navigate("/");
       }
     }
