@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import { validation } from "../utils/validation";
 import { Input, Button } from "../elements";
+import * as auth from "../lib/api/auth";
+import { MESSAGES } from "../utils/constants";
 
 interface Props {
   
@@ -35,21 +37,36 @@ const Login = (props: Props) => {
 
     return true;
   };
-  const onClickButton = (e: any) => {
+  const onClickButton = async (e: any) => {
     e.preventDefault();
     if (isValidInputs()) {
-      // dispatch(userActions.logInFB(state.id, state.password));
-      navigate("/");
+      const { id, password } = state;
+      const { message } = await auth.login({email: id, password: password});
+      if(MESSAGES.LOGIN === message) {
+        navigate("/");
+      }
     }
   };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
     if (isValidInputs()) {
-      // dispatch(userActions.logInFB(state.id, state.password));
-      navigate("/");
+      const { id, password } = state;
+      const { message } = await auth.login({email: id, password: password});
+      if(MESSAGES.LOGIN === message) {
+        navigate("/");
+      }
     }
   };
+
+  useEffect(() => {
+    const userToken = localStorage.getItem('user');
+    console.log(userToken);
+    if(userToken){
+      navigate("/");
+    }
+  }, [])
+
   return (
     <div style = {{ padding: "16px" }}>
       <p>로그인</p>
