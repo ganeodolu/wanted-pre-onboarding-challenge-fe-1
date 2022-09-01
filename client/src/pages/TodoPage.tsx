@@ -1,14 +1,26 @@
 import { Input } from 'elements'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import TodoList from '../components/TodoList';
 import TodoDetail from '../components/TodoDetail';
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   
 }
 
 const TodoPage = (props: Props) => {
+  const navigate = useNavigate();
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    const userToken = localStorage.getItem('user');
+    console.log(userToken);
+    if(!userToken){
+      navigate("/auth/login");
+    }
+  }, [])
+
   return (
     <>
     <div style={{ padding: "16px" }}>
