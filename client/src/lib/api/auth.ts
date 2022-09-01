@@ -19,6 +19,7 @@ const login = async ({
 		console.log(error);
 	}
 };
+
 const signup = async ({
 	email,
 	password,
