@@ -2,24 +2,34 @@ import React from 'react'
 import { Button } from 'elements'
 import styled from 'styled-components'
 
+interface Todo {
+  id: string;
+  title: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 interface Props {
-
+  children: Todo[]
 }
 
 const TodoList = (props: Props) => {
+  const { children: todos } = props;
+  console.log(todos);
+
   return (
     <div>
       <h2>Todo List</h2>
       <TodoListContainer>
-        <TodoItemContainer>
-          <h3>목록1</h3><Button>삭제</Button>
-        </TodoItemContainer>
-        <TodoItemContainer>
-          <h3>목록2</h3><Button>삭제</Button>
-        </TodoItemContainer>        
-        <TodoItemContainer>
-          <h3>목록3</h3><Button>삭제</Button>
-        </TodoItemContainer>
+        {todos.map((todo) => {
+          const { title } = todo;
+          return (
+            <TodoItemContainer>
+              <h3>{title}</h3><Button>삭제</Button>
+            </TodoItemContainer>
+          )
+        })}
+
       </TodoListContainer>
     </div>
   )
