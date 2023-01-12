@@ -21,10 +21,9 @@ const TodoList = (props: Props) => {
     <div>
       <h2>Todo List</h2>
       <TodoListContainer>
-        {todos.map((todo) => {
-          const { title } = todo;
+        {todos.map(({title, id}) => {
           return (
-            <TodoItemContainer>
+            <TodoItemContainer key={id}>
               <h3>{title}</h3><Button>삭제</Button>
             </TodoItemContainer>
           )
